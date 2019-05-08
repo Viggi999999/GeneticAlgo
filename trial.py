@@ -68,7 +68,7 @@ def getFitness(individual, X_train, X_test, y_train, y_test):
 	# Return calculated accuracy as fitness
 	return (accuracy,)
 
-#========DEAP GLOBAL VARIABLES (viewable by SCOOP)========
+#========DEAP GLOBAL VARIABLES========
 
 # Create Individual
 creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
@@ -79,7 +79,7 @@ toolbox.register("attr_bool", random.randint, 0, 1)
 toolbox.register("individual", tools.initRepeat, creator.Individual, toolbox.attr_bool, len(dfData.columns) - 1)
 toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 
-# Continue filling toolbox...
+# Fill the toolbox here
 toolbox.register("evaluate", getFitness, X_train=X_train, X_test=X_test, y_train=y_train, y_test=y_test)
 toolbox.register("mate", tools.cxOnePoint)
 toolbox.register("mutate", tools.mutFlipBit, indpb=0.05)
